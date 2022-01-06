@@ -1,4 +1,7 @@
-/obj
-/bin
+/WinForm/obj
+/WinForm/bin
+/MaterialSkin/obj
+/MaterialSkin/bin
 /.vs
-/WinForm/bin/Debug
+
+/packages/MaterialSkin.0.2.1
