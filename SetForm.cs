@@ -13,27 +13,47 @@ namespace WindowPin
     public partial class SetForm : Form
     {
         private WindowForm form;
+
+        public double WindowFormOpacity { get; set; }
+
         public SetForm(WindowForm _WindowForm)
         {
             InitializeComponent();
-            form = _WindowForm;
 
-            txt_Opacity.Text = form.Opacity.ToString();
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+
+            form = _WindowForm;
+            WindowFormOpacity = form.Opacity;
+
+            SetOpacityText();
             cbx_pin.Checked = form.FormBorderStyle == FormBorderStyle.None;
         }
 
-        private void btn_OK_Click(object sender, EventArgs e)
+        private void ReInitWindowForm()
         {
-            form.Opacity = double.Parse(txt_Opacity.Text);
+            form.Opacity = WindowFormOpacity;
             form.FormBorderStyle = cbx_pin.Checked ? FormBorderStyle.FixedSingle : FormBorderStyle.Sizable;
-
-            //this.Close();
         }
 
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
-            decimal i = 100;
-            txt_Opacity.Text = (trackBar1.Value / i).ToString();
+            WindowFormOpacity = (double)trackBar1.Value / 100;
+            SetOpacityText();
+
+            ReInitWindowForm();
+        }
+
+        private void SetOpacityText()
+        {
+            var windowFormOpacityInt = (int)(WindowFormOpacity * 100);
+            txt_Opacity.Text = windowFormOpacityInt.ToString();
+            trackBar1.Value = windowFormOpacityInt;
+        }
+
+        private void cbx_pin_CheckedChanged(object sender, EventArgs e)
+        {
+            ReInitWindowForm();
         }
     }
 }
