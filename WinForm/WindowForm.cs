@@ -41,7 +41,7 @@ namespace WindowPin
         private void Init_lvw_folders()
         {
             this.lvw_folders.View = View.Details;
-            //this.lvw_folders.Columns.Add("名称", 200);
+            this.lvw_folders.Columns.Add("名称", 200);
             //this.lvw_folders.Columns.Add("路径", 200);
             //this.lvw_folders.Columns.Add("创建时间", 200);
 
@@ -83,6 +83,11 @@ namespace WindowPin
         }
         #endregion
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void WindowForm_Load(object sender, EventArgs e)
         {
             
@@ -103,9 +108,9 @@ namespace WindowPin
                     ListViewItem item = new ListViewItem(
                         new string[]
                         {
-                                subDir.Name
-                                //subDir.FullName,
-                                //subDir.CreationTime.ToString("yyyy-MM-dd HH:mm:ss") 
+                                subDir.Name,
+                                subDir.FullName,
+                                subDir.CreationTime.ToString("yyyy-MM-dd HH:mm:ss") 
                         })
                     { Tag = subDir.FullName };
                     this.lvw_folders.Items.Add(item);
