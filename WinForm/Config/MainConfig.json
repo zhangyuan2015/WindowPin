@@ -1,0 +1,22 @@
+{
+  "WindowForms": [
+    {
+      "Path": "D:\\curl",
+      "IsFix": false,
+      "Opacity": 0.95,
+      "Top": 52,
+      "Left": 52,
+      "Height": 0,
+      "Width": 0
+    },
+    {
+      "Path": "D:\\wget2",
+      "IsFix": false,
+      "Opacity": 0.9,
+      "Top": 325,
+      "Left": 1079,
+      "Height": 280,
+      "Width": 383
+    }
+  ]
+}

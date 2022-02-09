@@ -1,32 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Diagnostics;
+using WindowPin.Code.Model;
+using WindowPin.Code.Service;
 
 namespace WindowPin
 {
     public partial class WindowForm : Form
     {
-        private string basePath;
-        public WindowForm(string _path)
+        public string BasePath { get; set; }
+        private readonly WindowFormConfig FormConfig;
+
+        public WindowForm(WindowFormConfig config)
         {
             InitializeComponent();
-            
-            basePath = _path;
+
+            FormConfig = config;
+            BasePath = FormConfig.Path;
 
             //this.BackColor = Color.FromArgb(32, 43, 67);
             //this.lvw_folders.BackColor = Color.FromArgb(32, 43, 67);
 
-            this.Text = basePath;
+            this.Text = BasePath;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.ShowInTaskbar = false;
+
+            this.Top = config.Top;
+            this.Left = config.Left;
+            this.Height = config.Height;
+            this.Width = config.Width;
+            this.Opacity = config.Opacity;
+            this.FormBorderStyle = config.IsFix ? FormBorderStyle.FixedSingle : FormBorderStyle.Sizable;
 
             Init_fsw();
             Init_lvw_folders();
@@ -36,7 +39,7 @@ namespace WindowPin
 
         #region 初始化 lvw_folders
         /// <summary>
-        /// 初始化 lvw_folders
+        /// 初始化 ListView lvw_folders
         /// </summary>
         private void Init_lvw_folders()
         {
@@ -62,7 +65,7 @@ namespace WindowPin
         private void Init_fsw()
         {
             var fsw = new FileSystemWatcher();
-            fsw.Path = basePath;
+            fsw.Path = BasePath;
             fsw.IncludeSubdirectories = false;
             fsw.NotifyFilter = NotifyFilters.FileName | NotifyFilters.DirectoryName | NotifyFilters.Size;
             fsw.Created += new FileSystemEventHandler(this.fileSystemWatcher_EventHandle);
@@ -90,7 +93,7 @@ namespace WindowPin
         /// <param name="e"></param>
         private void WindowForm_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         /// <summary>
@@ -100,7 +103,7 @@ namespace WindowPin
         {
             this.lvw_folders.Items.Clear();
 
-            var baseDir = new DirectoryInfo(basePath);
+            var baseDir = new DirectoryInfo(BasePath);
             if (baseDir.Exists)
             {
                 foreach (var subDir in baseDir.GetDirectories())
@@ -110,7 +113,7 @@ namespace WindowPin
                         {
                                 subDir.Name,
                                 subDir.FullName,
-                                subDir.CreationTime.ToString("yyyy-MM-dd HH:mm:ss") 
+                                subDir.CreationTime.ToString("yyyy-MM-dd HH:mm:ss")
                         })
                     { Tag = subDir.FullName };
                     this.lvw_folders.Items.Add(item);
@@ -127,8 +130,20 @@ namespace WindowPin
         {
             Process p = new Process();
             p.StartInfo.FileName = "explorer.exe";
-            p.StartInfo.Arguments = $" {basePath}";
+            p.StartInfo.Arguments = $" {BasePath}";
             p.Start();
+        }
+
+        private void WindowForm_Move(object sender, EventArgs e)
+        {
+            FormConfig.Top = Top;
+            FormConfig.Left = Left;
+        }
+
+        private void WindowForm_Resize(object sender, EventArgs e)
+        {
+            FormConfig.Height = Height;
+            FormConfig.Width = Width;
         }
     }
 }

@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using WindowPin.Code.Model;
+using WindowPin.Code.Service;
 
 namespace WindowPin
 {
     public partial class CreatePathForm : Form
     {
+        private readonly MainConfigService mainConfigService = MainConfigService.CreateInstance();
+
         /// <summary>
         /// 
         /// </summary>
@@ -50,7 +45,17 @@ namespace WindowPin
 
         private void btn_create_Click(object sender, EventArgs e)
         {
-            new WindowForm(txt_folderPath.Text).Show();
+            var windowForm = mainConfigService.MainConfig.WindowForms.FirstOrDefault(a => a.Path == txt_folderPath.Text);
+            if (windowForm == null)
+            {
+                windowForm = new WindowFormConfig { Path = txt_folderPath.Text };
+                mainConfigService.MainConfig.WindowForms.Add(windowForm);
+                new WindowForm(windowForm).Show();
+            }
+            else
+            {
+                MessageBox.Show(txt_folderPath.Text + ":已打开");
+            }
         }
     }
 }

@@ -1,19 +1,26 @@
+using WindowPin.Code.Service;
+
 namespace WindowPin
 {
     public partial class MainForm : Form
     {
+        private readonly MainConfigService mainConfigService = MainConfigService.CreateInstance();
+
         public MainForm()
         {
             InitializeComponent();
             //this.Opacity = 0;//Í¸Ã÷µÄ
-            this.ShowInTaskbar = false; 
+            this.ShowInTaskbar = false;
             this.WindowState = FormWindowState.Minimized;
             nfi_MinWindow.Visible = true;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            
+            foreach (var windowForm in mainConfigService.MainConfig.WindowForms)
+            {
+                new WindowForm(windowForm).Show();
+            }
         }
 
         private void nfi_MinWindow_MouseClick(object sender, MouseEventArgs e)
@@ -45,6 +52,11 @@ namespace WindowPin
         private void tsmi_close_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void tsmi_save_Click(object sender, EventArgs e)
+        {
+            mainConfigService.Update();
         }
     }
 }

@@ -80,6 +80,8 @@
             this.Name = "WindowForm";
             this.Text = "WindowForm";
             this.Load += new System.EventHandler(this.WindowForm_Load);
+            this.Move += new System.EventHandler(this.WindowForm_Move);
+            this.Resize += new System.EventHandler(this.WindowForm_Resize);
             this.cms_menu.ResumeLayout(false);
             this.ResumeLayout(false);
 

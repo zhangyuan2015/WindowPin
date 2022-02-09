@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using WindowPin.Code.Model;
+using WindowPin.Code.Service;
 
 namespace WindowPin
 {
     public partial class SetForm : Form
     {
         private WindowForm form;
+        private readonly MainConfigService mainConfigService = MainConfigService.CreateInstance();
 
         public double WindowFormOpacity { get; set; }
 
@@ -54,6 +48,18 @@ namespace WindowPin
         private void cbx_pin_CheckedChanged(object sender, EventArgs e)
         {
             ReInitWindowForm();
+        }
+
+        private void SetForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            var windowForm = mainConfigService.MainConfig.WindowForms.FirstOrDefault(a => a.Path == form.BasePath);
+            if (windowForm == null)
+            {
+                windowForm = new WindowFormConfig { Path = form.BasePath };
+                mainConfigService.MainConfig.WindowForms.Add(windowForm);
+            }
+            windowForm.Opacity = WindowFormOpacity;
+            windowForm.IsFix = cbx_pin.Checked;
         }
     }
 }

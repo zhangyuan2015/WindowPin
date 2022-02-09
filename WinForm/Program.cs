@@ -23,8 +23,7 @@ namespace WindowPin
 
         public static bool CanRunCheck()
         {
-            bool isNoRun;
-            Mutex mutex = new Mutex(true, Application.ProductName, out isNoRun);
+            _ = new Mutex(true, Application.ProductName, out bool isNoRun);
             return isNoRun;
         }
     }

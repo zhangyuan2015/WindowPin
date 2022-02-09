@@ -33,6 +33,7 @@
             this.nfi_MinWindow = new System.Windows.Forms.NotifyIcon(this.components);
             this.cms_nfi = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmi_create = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_save = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmi_close = new System.Windows.Forms.ToolStripMenuItem();
             this.cms_nfi.SuspendLayout();
@@ -51,35 +52,44 @@
             this.cms_nfi.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.cms_nfi.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmi_create,
+            this.tsmi_save,
             this.toolStripSeparator1,
             this.tsmi_close});
             this.cms_nfi.Name = "cms_nfi";
-            this.cms_nfi.Size = new System.Drawing.Size(109, 58);
+            this.cms_nfi.Size = new System.Drawing.Size(101, 76);
             // 
             // tsmi_create
             // 
             this.tsmi_create.Name = "tsmi_create";
-            this.tsmi_create.Size = new System.Drawing.Size(108, 24);
+            this.tsmi_create.Size = new System.Drawing.Size(100, 22);
             this.tsmi_create.Text = "新建";
             this.tsmi_create.Click += new System.EventHandler(this.tsmi_create_Click);
+            // 
+            // tsmi_save
+            // 
+            this.tsmi_save.Name = "tsmi_save";
+            this.tsmi_save.Size = new System.Drawing.Size(100, 22);
+            this.tsmi_save.Text = "保存";
+            this.tsmi_save.Click += new System.EventHandler(this.tsmi_save_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(105, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(97, 6);
             // 
             // tsmi_close
             // 
             this.tsmi_close.Name = "tsmi_close";
-            this.tsmi_close.Size = new System.Drawing.Size(108, 24);
+            this.tsmi_close.Size = new System.Drawing.Size(100, 22);
             this.tsmi_close.Text = "退出";
             this.tsmi_close.Click += new System.EventHandler(this.tsmi_close_Click);
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(707, 343);
+            this.ClientSize = new System.Drawing.Size(550, 292);
+            this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Name = "MainForm";
             this.Text = "主窗体";
             this.Load += new System.EventHandler(this.MainForm_Load);
@@ -95,5 +105,6 @@
         private ToolStripMenuItem tsmi_create;
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripMenuItem tsmi_close;
+        private ToolStripMenuItem tsmi_save;
     }
 }
