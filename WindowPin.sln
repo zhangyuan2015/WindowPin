@@ -5,8 +5,6 @@ VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WindowPin", "WinForm\WindowPin.csproj", "{A83497DE-1647-4A3E-9C83-51B8EE2BF209}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowPin.MaterialSkin", "MaterialSkin\WindowPin.MaterialSkin.csproj", "{155C1538-DEE8-40D6-B77A-5C21DA2DB295}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowPin.Code", "WindowPin.Code\WindowPin.Code.csproj", "{8ECB07D6-9F15-4BBC-8C77-F40907720C09}"
 EndProject
 Global
@@ -19,10 +17,6 @@ Global
 		{A83497DE-1647-4A3E-9C83-51B8EE2BF209}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A83497DE-1647-4A3E-9C83-51B8EE2BF209}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A83497DE-1647-4A3E-9C83-51B8EE2BF209}.Release|Any CPU.Build.0 = Release|Any CPU
-		{155C1538-DEE8-40D6-B77A-5C21DA2DB295}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{155C1538-DEE8-40D6-B77A-5C21DA2DB295}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{155C1538-DEE8-40D6-B77A-5C21DA2DB295}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{155C1538-DEE8-40D6-B77A-5C21DA2DB295}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8ECB07D6-9F15-4BBC-8C77-F40907720C09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8ECB07D6-9F15-4BBC-8C77-F40907720C09}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8ECB07D6-9F15-4BBC-8C77-F40907720C09}.Release|Any CPU.ActiveCfg = Release|Any CPU
